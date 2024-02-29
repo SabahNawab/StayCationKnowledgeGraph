@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>StayCation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="social-icons">
+      <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="icon"><i class="fab fa-facebook"></i></a>
+      <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='images/2.png') }}" alt="Image 1" class="image" id="image1" />
+        <img src="{{ url_for('static', filename='images/3.png') }}" alt="Image 2" class="image" id="image2" />
+        <img src="{{ url_for('static', filename='images/4.png') }}" alt="Image 3" class="image" id="image3" />
+    </div>
+    
+    <h1 class="heading">Staycation</h1>
+    
+    <!-- Added form for query submission -->
+    <form id="textForm" action="http://localhost:5000/query" method='GET'>
+      <textarea name="naam"
+      
+        placeholder="Enter Query here"
+      
+        class="input-box"
+        id="inputText"
+        rows="2"
+      
+      ></textarea>
+      <button type="submit" class="arrow-icon fas fa-arrow-right"></button>
+    </form>
+    
+      <div class="popup" id="popup">
+        <div class="inside" id="i1" style="overflow: auto;">
+          <table class="table">
+            <thead>
+              <tr>
+                {% for header in headers %}
+                  <th>{{ header }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in table %}
+                <tr>
+                  {% for header in headers %}
+                    <td>{{ row[header] }}</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <i class="close-icon fas fa-times" onclick="closePopup()"></i>
+      </div>
+    
+    
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+      {% if check == 1 %} 
+          <script>
+              
+            openPopup();
+
+          </script>
+      {% endif %}
+
+  </body>
+</html>
